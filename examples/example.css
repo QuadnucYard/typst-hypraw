@@ -1,0 +1,25 @@
+/* Example Styles */
+:root {
+  --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+  --hypraw-border-radius: 0.5em;
+  --hypraw-padding: 0.7em;
+}
+
+.hypraw pre > code {
+  display: block;
+  overflow: auto;
+  padding: var(--hypraw-padding);
+  border-radius: var(--hypraw-border-radius);
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+code.hypraw {
+  padding: 0 0.3em;
+  border-radius: 0.3em;
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+
+.hypraw .underline {
+  text-decoration: underline;
+}
