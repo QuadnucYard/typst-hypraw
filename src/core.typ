@@ -8,7 +8,7 @@
 }
 
 /// Applies HTML styling to a single text fragment. Generates a span element with CSS classes or inline styles.
-#let style-code-text(it, default-color: black, dedup-styles: true) = context {
+#let code-text-rule(it, default-color: black, dedup-styles: true) = {
   // Skip empty lines
   if it.text == "" {
     return none
@@ -49,7 +49,7 @@
 }
 
 /// Renders inline code as HTML `<code>` elements with syntax highlighting.
-#let show-html-inline(it, dedup-styles: true) = context {
+#let code-inline-rule(it, dedup-styles: true) = {
   let default-color = text.fill
 
   let code-attrs = (
@@ -57,16 +57,25 @@
   )
 
   html.elem("code", attrs: code-attrs, {
-    show text: style-code-text.with(default-color: default-color, dedup-styles: dedup-styles)
+    show text: code-text-rule.with(default-color: default-color, dedup-styles: dedup-styles)
     it.lines.join("\n")
   })
 }
 
 /// Renders block code as HTML `<div><pre><code>` structure with syntax highlighting.
-#let show-html(it, dedup-styles: true) = context {
+#let code-rule(it, dedup-styles: true, copy-button: true) = {
   let default-color = text.fill
 
   html.elem("div", attrs: (class: "hypraw"), {
+    // Add copy button if enabled
+    if copy-button {
+      html.elem("button", attrs: (
+        class: "hypraw-copy-btn",
+        aria-label: "Copy code",
+        data-copy: it.text,
+      ))
+    }
+
     html.elem("pre", {
       let code-attrs = (:)
 
@@ -75,7 +84,7 @@
         code-attrs.class = cls
       }
       html.elem("code", attrs: code-attrs, {
-        show text: style-code-text.with(default-color: default-color, dedup-styles: dedup-styles)
+        show text: code-text-rule.with(default-color: default-color, dedup-styles: dedup-styles)
         it.lines.join("\n")
       })
     })

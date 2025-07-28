@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h2>Hypraw Example (With Copy Buttons)</h2>
+    <p>This demonstrates basic usage of hypraw with copy buttons enabled (default behavior).</p>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="#show: hypraw.with(copy-button: true)"></button>
+      <pre><code class="language-typ"><span class="c0">#</span><span class="c0">show</span>: hypraw.<span class="c1">with</span>(copy-button: <span class="c0">true</span>)</code></pre>
+    </div>
+    <h3>Copy Button Feature</h3>
+    <p>All code blocks above include copy buttons (📋) that allow one-click copying of the code content. The buttons are headless and fully customizable via CSS.</p>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="/* Copy button styles */
+.hypraw-copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: var(--hypraw-copy-btn-bg);
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.hypraw-copy-btn::before {
+  content: &quot;📋&quot;;
+  font-size: 1rem;
+}
+
+.hypraw-copy-btn:hover {
+  background: var(--hypraw-copy-btn-hover-bg);
+  border-color: hsla(0, 0%, 70%, 1);
+}
+
+.hypraw-copy-btn:active {
+  background: var(--hypraw-copy-btn-active-bg);
+  transform: translateY(1px);
+}
+
+/* Success state */
+.hypraw-copy-btn.copied {
+  background: hsla(120, 40%, 85%, 1);
+  border-color: hsla(120, 40%, 70%, 1);
+}
+
+.hypraw-copy-btn.copied::after {
+  content: &quot; ✓&quot;;
+  color: hsla(120, 60%, 40%, 1);
+}"></button>
+      <pre><code class="language-css"><span class="c2">/*</span><span class="c2"> Copy button styles </span><span class="c2">*/</span>
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span> {
+  <span class="c1">position</span>: <span class="c1">absolute</span>;
+  <span class="c1">top</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">5</span><span class="c0">em</span>;
+  <span class="c1">right</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">5</span><span class="c0">em</span>;
+  <span class="c1">background</span>: <span class="c1">var</span>(<span class="c1">--</span><span class="c1">hypraw-copy-btn-bg</span>);
+  <span class="c1">border</span>: <span class="c4">1</span><span class="c0">px</span> <span class="c1">solid</span> <span class="c1">transparent</span>;
+  <span class="c1">border-radius</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">25</span><span class="c0">em</span>;
+  <span class="c1">padding</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">25</span><span class="c0">em</span> <span class="c4">0</span><span class="c4">.</span><span class="c4">5</span><span class="c0">em</span>;
+  <span class="c1">font-size</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">875</span><span class="c0">em</span>;
+  <span class="c1">cursor</span>: <span class="c1">pointer</span>;
+  <span class="c1">transition</span>: <span class="c1">all</span> <span class="c4">0</span><span class="c4">.</span><span class="c4">2</span><span class="c0">s</span> <span class="c1">ease</span>;
+  <span class="c1">z-index</span>: <span class="c4">1</span>;
+}
+
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span><span class="c3">::</span><span class="c3">before</span> {
+  <span class="c1">content</span>: <span class="c5">"</span><span class="c5">📋</span><span class="c5">"</span>;
+  <span class="c1">font-size</span>: <span class="c4">1</span><span class="c0">rem</span>;
+}
+
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span><span class="c3">:</span><span class="c3">hover</span> {
+  <span class="c1">background</span>: <span class="c1">var</span>(<span class="c1">--</span><span class="c1">hypraw-copy-btn-hover-bg</span>);
+  <span class="c1">border-color</span>: <span class="c1">hsla</span>(<span class="c4">0</span>, <span class="c4">0</span><span class="c0">%</span>, <span class="c4">70</span><span class="c0">%</span>, <span class="c4">1</span>);
+}
+
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span><span class="c3">:</span><span class="c3">active</span> {
+  <span class="c1">background</span>: <span class="c1">var</span>(<span class="c1">--</span><span class="c1">hypraw-copy-btn-active-bg</span>);
+  <span class="c1">transform</span>: <span class="c1">translateY</span>(<span class="c4">1</span><span class="c0">px</span>);
+}
+
+<span class="c2">/*</span><span class="c2"> Success state </span><span class="c2">*/</span>
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span><span class="c3">.</span><span class="c3">copied</span> {
+  <span class="c1">background</span>: <span class="c1">hsla</span>(<span class="c4">120</span>, <span class="c4">40</span><span class="c0">%</span>, <span class="c4">85</span><span class="c0">%</span>, <span class="c4">1</span>);
+  <span class="c1">border-color</span>: <span class="c1">hsla</span>(<span class="c4">120</span>, <span class="c4">40</span><span class="c0">%</span>, <span class="c4">70</span><span class="c0">%</span>, <span class="c4">1</span>);
+}
+
+<span class="c3">.</span><span class="c3">hypraw-copy-btn</span><span class="c3">.</span><span class="c3">copied</span><span class="c3">::</span><span class="c3">after</span> {
+  <span class="c1">content</span>: <span class="c5">"</span><span class="c5"> ✓</span><span class="c5">"</span>;
+  <span class="c1">color</span>: <span class="c1">hsla</span>(<span class="c4">120</span>, <span class="c4">60</span><span class="c0">%</span>, <span class="c4">40</span><span class="c0">%</span>, <span class="c4">1</span>);
+}</code></pre>
+    </div>
+    <script>/**
+ * Copy button functionality for hypraw code blocks
+ * Since typst will convert `&amp;` into `&amp;amp;`, we have to avoid its usage in scripts.
+ */
+
+(() => {
+  /**
+   * Copy text to clipboard using the modern Clipboard API with fallback
+   * @param {string} text - Text to copy
+   * @returns {Promise&lt;boolean>} - Success status
+   */
+  async function copyToClipboard(text) {
+    // Modern Clipboard API
+    if (!(!navigator.clipboard || !window.isSecureContext)) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        console.warn("Clipboard API failed", err);
+      }
+    }
+  }
+
+  /**
+   * Handle copy button click
+   * @param {Event} event - Click event
+   */
+  async function handleCopyClick(event) {
+    const button = event.target;
+    const textToCopy = button.getAttribute("data-copy");
+
+    if (!textToCopy) {
+      console.warn("No text to copy found in data-copy attribute");
+      return;
+    }
+
+    const success = await copyToClipboard(textToCopy);
+
+    if (success) {
+      // Visual feedback
+      button.classList.add("copied");
+      button.setAttribute("aria-label", "Copied!");
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        button.classList.remove("copied");
+        button.setAttribute("aria-label", "Copy code");
+      }, 2000);
+    } else {
+      // Error feedback
+      button.setAttribute("aria-label", "Copy failed");
+      setTimeout(() => {
+        button.setAttribute("aria-label", "Copy code");
+      }, 2000);
+    }
+  }
+
+  /**
+   * Initialize copy buttons when DOM is ready
+   */
+  function initializeCopyButtons() {
+    const copyButtons = document.querySelectorAll(".hypraw-copy-btn");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", handleCopyClick);
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCopyButtons);
+  } else {
+    initializeCopyButtons();
+  }
+})();
+</script>
+    <style>/* Example Styles */
+:root {
+  --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+  --hypraw-border-radius: 0.5em;
+  --hypraw-padding: 0.7em;
+  --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+  --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+  --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+}
+
+.hypraw {
+  position: relative;
+}
+
+.hypraw pre > code {
+  display: block;
+  overflow: auto;
+  padding: var(--hypraw-padding);
+  border-radius: var(--hypraw-border-radius);
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+
+code.hypraw {
+  padding: 0 0.3em;
+  border-radius: 0.3em;
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+
+.hypraw .underline {
+  text-decoration: underline;
+}
+/* Copy button styles */
+.hypraw-copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: var(--hypraw-copy-btn-bg);
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.hypraw-copy-btn::before {
+  content: "📋";
+  font-size: 1rem;
+}
+
+.hypraw-copy-btn:hover {
+  background: var(--hypraw-copy-btn-hover-bg);
+  border-color: hsla(0, 0%, 70%, 1);
+}
+
+.hypraw-copy-btn:active {
+  background: var(--hypraw-copy-btn-active-bg);
+  transform: translateY(1px);
+}
+
+/* Success state */
+.hypraw-copy-btn.copied {
+  background: hsla(120, 40%, 85%, 1);
+  border-color: hsla(120, 40%, 70%, 1);
+}
+
+.hypraw-copy-btn.copied::after {
+  content: " ✓";
+  color: hsla(120, 60%, 40%, 1);
+}</style>
+    <style>.hypraw .c0{color:#d73a49;}
+.hypraw .c1{color:#4b69c6;}
+.hypraw .c2{color:#8a8a8a;}
+.hypraw .c3{color:#8b41b1;}
+.hypraw .c4{color:#b60157;}
+.hypraw .c5{color:#298e0d;}
+</style>
+  </body>
+</html>

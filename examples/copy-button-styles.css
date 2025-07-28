@@ -1,0 +1,66 @@
+/* Copy Button Customization Styles */
+
+/* Base styles for all examples */
+:root {
+  --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+  --hypraw-border-radius: 0.5em;
+  --hypraw-padding: 0.7em;
+  --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+  --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+  --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+}
+
+.hypraw {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.hypraw pre > code {
+  display: block;
+  overflow: auto;
+  padding: var(--hypraw-padding);
+  border-radius: var(--hypraw-border-radius);
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+
+/* Base copy button styles */
+.hypraw-copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: var(--hypraw-copy-btn-bg);
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.hypraw-copy-btn:hover {
+  background: var(--hypraw-copy-btn-hover-bg);
+  border-color: hsla(0, 0%, 70%, 1);
+}
+
+.hypraw-copy-btn:active {
+  background: var(--hypraw-copy-btn-active-bg);
+  transform: translateY(1px);
+}
+
+.hypraw-copy-btn:focus {
+  outline: 2px solid hsla(210, 100%, 50%, 0.5);
+  outline-offset: 2px;
+}
+
+/* Success state for all methods */
+.hypraw-copy-btn.copied {
+  background: hsla(120, 40%, 85%, 1);
+  border-color: hsla(120, 40%, 70%, 1);
+}
+
+/* Default content */
+.hypraw .hypraw-copy-btn:before {
+  content: "📄";
+}

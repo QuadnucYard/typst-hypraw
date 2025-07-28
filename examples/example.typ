@@ -1,26 +1,34 @@
 #import "/src/lib.typ": *
 
-#show: hypraw
+#show: hypraw.with(copy-button: false)
 
-Inline raw:
+= Hypraw Example (Without Copy Buttons)
 
-`#import "/src/lib.typ": *`
-or
-```typ #import "/src/lib.typ": *```
+This demonstrates usage of hypraw with copy buttons disabled.
 
-Blocky raw:
+All code blocks in this document have no copy buttons. This is controlled by the global setting:
+
+```typ
+#show: hypraw.with(copy-button: false)
+```
+
+== Inline Code
+
+Inline raw: `#import "/src/lib.typ": *` or with language ```typ #import "/src/lib.typ": *```
+
+== Block Code
 
 ```typ
 #let hypraw(body, dedup-styles: true) = context {
   if is-html-target() {
-    import "html.typ": hypraw-html-show, hypraw-html-show-inline
+    import "core.typ": show-html, show-html-inline
 
     show raw: it => {
       show underline: html.elem.with("span", attrs: (class: "underline"))
       it
     }
-    show raw.where(block: false): hypraw-html-show-inline.with(dedup-styles: dedup-styles)
-    show raw.where(block: true): hypraw-html-show.with(dedup-styles: dedup-styles)
+    show raw.where(block: false): show-html-inline.with(dedup-styles: dedup-styles)
+    show raw.where(block: true): show-html.with(dedup-styles: dedup-styles)
     body
   } else {
     body
@@ -28,4 +36,8 @@ Blocky raw:
 }
 ```
 
-#hypraw-styles(read("example.css"))
+== Note
+
+Since `hypraw` is stateless and affects the entire document, you cannot mix enabled and disabled copy buttons within the same document. Use separate documents for different settings.
+
+#html-style(read("example.css"))

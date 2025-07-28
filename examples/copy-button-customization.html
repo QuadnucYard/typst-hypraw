@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h2>CSS Customization Examples</h2>
+    <p>This document demonstrates how to customize copy button appearance using CSS targeting techniques.</p>
+    <p><strong>Note:</strong> All customization is achieved through CSS using selectors like <code class="hypraw">:nth-of-type()</code> or custom classes. See <code class="hypraw">copy-button-styles.css</code> for implementation details.</p>
+    <h3>Method 1: CSS Content</h3>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="/* Targets the first code block */
+.hypraw:nth-of-type(1) .hypraw-copy-btn::before {
+  content: &quot;Copy&quot;;
+  font-size: 0.875rem;
+  font-family: system-ui, sans-serif;
+}
+
+.hypraw:nth-of-type(1) .hypraw-copy-btn.copied::before {
+  content: &quot;✓ Copied!&quot;;
+  color: hsla(120, 60%, 40%, 1);
+}"></button>
+      <pre><code class="language-css"><span class="c0">/*</span><span class="c0"> Targets the first code block </span><span class="c0">*/</span>
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">1</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">Copy</span><span class="c4">"</span>;
+  <span class="c3">font-size</span>: <span class="c2">0</span><span class="c2">.</span><span class="c2">875</span><span class="c5">rem</span>;
+  <span class="c3">font-family</span>: <span class="c3">system-ui</span>, <span class="c3">sans-serif</span>;
+}
+
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">1</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">.</span><span class="c1">copied</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">✓ Copied!</span><span class="c4">"</span>;
+  <span class="c3">color</span>: <span class="c3">hsla</span>(<span class="c2">120</span>, <span class="c2">60</span><span class="c5">%</span>, <span class="c2">40</span><span class="c5">%</span>, <span class="c2">1</span>);
+}</code></pre>
+    </div>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy=".hypraw:nth-of-type(2) .hypraw-copy-btn::before {
+  content: &quot;📄 Copy Code&quot;;
+  font-size: 0.875rem;
+}
+
+.hypraw:nth-of-type(2) .hypraw-copy-btn.copied::before {
+  content: &quot;✅ Copied!&quot;;
+}"></button>
+      <pre><code class="language-css"><span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">2</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">📄 Copy Code</span><span class="c4">"</span>;
+  <span class="c3">font-size</span>: <span class="c2">0</span><span class="c2">.</span><span class="c2">875</span><span class="c5">rem</span>;
+}
+
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">2</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">.</span><span class="c1">copied</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">✅ Copied!</span><span class="c4">"</span>;
+}</code></pre>
+    </div>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy=".hypraw:nth-of-type(3) .hypraw-copy-btn::before {
+  content: &quot;📑&quot;;
+  font-size: 1rem;
+}
+
+.hypraw:nth-of-type(3) .hypraw-copy-btn.copied::before {
+  content: &quot;✅&quot;;
+}"></button>
+      <pre><code class="language-css"><span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">3</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">📑</span><span class="c4">"</span>;
+  <span class="c3">font-size</span>: <span class="c2">1</span><span class="c5">rem</span>;
+}
+
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">3</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">.</span><span class="c1">copied</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c4">"</span><span class="c4">✅</span><span class="c4">"</span>;
+}</code></pre>
+    </div>
+    <h3>Method 2: CSS Custom Properties</h3>
+    <div class="hypraw">
+      <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="/* Method 2: CSS custom properties for easy theming */
+.hypraw:nth-of-type(4) {
+  --copy-btn-content: &quot;📋 Copy&quot;;
+  --copy-btn-content-copied: &quot;✅ Copied!&quot;;
+}
+
+.hypraw:nth-of-type(4) .hypraw-copy-btn::before {
+  content: var(--copy-btn-content);
+  font-size: 0.875rem;
+}
+
+.hypraw:nth-of-type(4) .hypraw-copy-btn.copied::before {
+  content: var(--copy-btn-content-copied);
+}"></button>
+      <pre><code class="language-css"><span class="c0">/*</span><span class="c0"> Method 2: CSS custom properties for easy theming </span><span class="c0">*/</span>
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">4</span>) {
+  <span class="c3">--</span><span class="c3">copy-btn-content</span>: <span class="c4">"</span><span class="c4">📋 Copy</span><span class="c4">"</span>;
+  <span class="c3">--</span><span class="c3">copy-btn-content-copied</span>: <span class="c4">"</span><span class="c4">✅ Copied!</span><span class="c4">"</span>;
+}
+
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">4</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c3">var</span>(<span class="c3">--</span><span class="c3">copy-btn-content</span>);
+  <span class="c3">font-size</span>: <span class="c2">0</span><span class="c2">.</span><span class="c2">875</span><span class="c5">rem</span>;
+}
+
+<span class="c1">.</span><span class="c1">hypraw</span><span class="c1">:</span><span class="c1">nth-of-type</span>(<span class="c2">4</span>) <span class="c1">.</span><span class="c1">hypraw-copy-btn</span><span class="c1">.</span><span class="c1">copied</span><span class="c1">::</span><span class="c1">before</span> {
+  <span class="c3">content</span>: <span class="c3">var</span>(<span class="c3">--</span><span class="c3">copy-btn-content-copied</span>);
+}</code></pre>
+    </div>
+    <script>/**
+ * Copy button functionality for hypraw code blocks
+ * Since typst will convert `&amp;` into `&amp;amp;`, we have to avoid its usage in scripts.
+ */
+
+(() => {
+  /**
+   * Copy text to clipboard using the modern Clipboard API with fallback
+   * @param {string} text - Text to copy
+   * @returns {Promise&lt;boolean>} - Success status
+   */
+  async function copyToClipboard(text) {
+    // Modern Clipboard API
+    if (!(!navigator.clipboard || !window.isSecureContext)) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        console.warn("Clipboard API failed", err);
+      }
+    }
+  }
+
+  /**
+   * Handle copy button click
+   * @param {Event} event - Click event
+   */
+  async function handleCopyClick(event) {
+    const button = event.target;
+    const textToCopy = button.getAttribute("data-copy");
+
+    if (!textToCopy) {
+      console.warn("No text to copy found in data-copy attribute");
+      return;
+    }
+
+    const success = await copyToClipboard(textToCopy);
+
+    if (success) {
+      // Visual feedback
+      button.classList.add("copied");
+      button.setAttribute("aria-label", "Copied!");
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        button.classList.remove("copied");
+        button.setAttribute("aria-label", "Copy code");
+      }, 2000);
+    } else {
+      // Error feedback
+      button.setAttribute("aria-label", "Copy failed");
+      setTimeout(() => {
+        button.setAttribute("aria-label", "Copy code");
+      }, 2000);
+    }
+  }
+
+  /**
+   * Initialize copy buttons when DOM is ready
+   */
+  function initializeCopyButtons() {
+    const copyButtons = document.querySelectorAll(".hypraw-copy-btn");
+
+    copyButtons.forEach((button) => {
+      button.addEventListener("click", handleCopyClick);
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCopyButtons);
+  } else {
+    initializeCopyButtons();
+  }
+})();
+</script>
+    <style>/* Copy Button Customization Styles */
+
+/* Base styles for all examples */
+:root {
+  --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+  --hypraw-border-radius: 0.5em;
+  --hypraw-padding: 0.7em;
+  --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+  --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+  --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+}
+
+.hypraw {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.hypraw pre > code {
+  display: block;
+  overflow: auto;
+  padding: var(--hypraw-padding);
+  border-radius: var(--hypraw-border-radius);
+  color: var(--hypraw-fg-color);
+  background: var(--hypraw-bg-color);
+}
+
+/* Base copy button styles */
+.hypraw-copy-btn {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background: var(--hypraw-copy-btn-bg);
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.hypraw-copy-btn:hover {
+  background: var(--hypraw-copy-btn-hover-bg);
+  border-color: hsla(0, 0%, 70%, 1);
+}
+
+.hypraw-copy-btn:active {
+  background: var(--hypraw-copy-btn-active-bg);
+  transform: translateY(1px);
+}
+
+.hypraw-copy-btn:focus {
+  outline: 2px solid hsla(210, 100%, 50%, 0.5);
+  outline-offset: 2px;
+}
+
+/* Success state for all methods */
+.hypraw-copy-btn.copied {
+  background: hsla(120, 40%, 85%, 1);
+  border-color: hsla(120, 40%, 70%, 1);
+}
+
+/* Default content */
+.hypraw .hypraw-copy-btn:before {
+  content: "📄";
+}
+/* Targets the first code block */
+.hypraw:nth-of-type(1) .hypraw-copy-btn::before {
+  content: "Copy";
+  font-size: 0.875rem;
+  font-family: system-ui, sans-serif;
+}
+
+.hypraw:nth-of-type(1) .hypraw-copy-btn.copied::before {
+  content: "✓ Copied!";
+  color: hsla(120, 60%, 40%, 1);
+}.hypraw:nth-of-type(2) .hypraw-copy-btn::before {
+  content: "📄 Copy Code";
+  font-size: 0.875rem;
+}
+
+.hypraw:nth-of-type(2) .hypraw-copy-btn.copied::before {
+  content: "✅ Copied!";
+}.hypraw:nth-of-type(3) .hypraw-copy-btn::before {
+  content: "📑";
+  font-size: 1rem;
+}
+
+.hypraw:nth-of-type(3) .hypraw-copy-btn.copied::before {
+  content: "✅";
+}/* Method 2: CSS custom properties for easy theming */
+.hypraw:nth-of-type(4) {
+  --copy-btn-content: "📋 Copy";
+  --copy-btn-content-copied: "✅ Copied!";
+}
+
+.hypraw:nth-of-type(4) .hypraw-copy-btn::before {
+  content: var(--copy-btn-content);
+  font-size: 0.875rem;
+}
+
+.hypraw:nth-of-type(4) .hypraw-copy-btn.copied::before {
+  content: var(--copy-btn-content-copied);
+}</style>
+    <style>.hypraw .c0{color:#8a8a8a;}
+.hypraw .c1{color:#8b41b1;}
+.hypraw .c2{color:#b60157;}
+.hypraw .c3{color:#4b69c6;}
+.hypraw .c4{color:#298e0d;}
+.hypraw .c5{color:#d73a49;}
+</style>
+  </body>
+</html>
