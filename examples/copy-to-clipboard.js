@@ -1,6 +1,5 @@
 /**
  * Copy button functionality for hypraw code blocks
- * Since typst will convert `&` into `&amp;`, we have to avoid its usage in scripts.
  */
 
 (() => {
@@ -11,7 +10,7 @@
    */
   async function copyToClipboard(text) {
     // Modern Clipboard API
-    if (!(!navigator.clipboard || !window.isSecureContext)) {
+    if (navigator.clipboard && window.isSecureContext) {
       try {
         await navigator.clipboard.writeText(text);
         return true;

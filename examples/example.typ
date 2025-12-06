@@ -19,19 +19,27 @@ Inline raw: `#import "/src/lib.typ": *` or with language ```typ #import "/src/li
 == Block Code
 
 ```typ
-#let hypraw(body, dedup-styles: true) = context {
-  if is-html-target() {
-    import "core.typ": show-html, show-html-inline
+#let hypraw(body, dedup-styles: true, attach-styles: true, copy-button: true) = context {
+  if not is-html-target() {
+    return body
+  }
 
-    show raw: it => {
-      show underline: html.elem.with("span", attrs: (class: "underline"))
-      it
-    }
-    show raw.where(block: false): show-html-inline.with(dedup-styles: dedup-styles)
-    show raw.where(block: true): show-html.with(dedup-styles: dedup-styles)
-    body
+  import "core.typ": code-inline-rule, code-rule, code-span-rule
+
+  // Dedup styles and override code rendering rules
+  show html.elem.where(tag: "code"): it => if dedup-styles {
+    show html.elem.where(tag: "span"): code-span-rule
+    it
   } else {
-    body
+    it
+  }
+  show raw.where(block: false): code-inline-rule
+  show raw.where(block: true): code-rule.with(copy-button: copy-button)
+  body
+
+  // Attach generated styles at the end of the document
+  if attach-styles {
+    html-style(additional-styles())
   }
 }
 ```

@@ -8,5 +8,7 @@ description = "A lightweight package for creating headless code blocks optimized
 repository = "https://github.com/QuadnucYard/typst-hypraw"
 keywords = ["code", "highlight", "raw", "html"]
 categories = ["components", "layout"]
+compiler = "0.14.0"
+exclude = ["examples"]
 
 [tool]

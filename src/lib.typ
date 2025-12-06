@@ -6,14 +6,14 @@
 /// Creates a custom `<style>` element for HTML output. Ignored for other formats.
 #let html-style(style) = context {
   if is-html-target() {
-    html.elem("style", style)
+    html.style(style)
   }
 }
 
 /// Creates a custom `<script>` element for HTML output. Ignored for other formats.
 #let html-script(script) = context {
   if is-html-target() {
-    html.elem("script", script)
+    html.script(script)
   }
 }
 
@@ -24,24 +24,25 @@
 /// - attach-styles (bool): Automatically include generated CSS styles (default: true)
 /// - copy-button (bool): Add copy button to code blocks (default: true)
 #let hypraw(body, dedup-styles: true, attach-styles: true, copy-button: true) = context {
-  if is-html-target() {
-    import "core.typ": code-inline-rule, code-rule
+  if not is-html-target() {
+    return body
+  }
 
-    show raw: it => {
-      show underline: html.elem.with("span", attrs: (class: "underline"))
-      it
-    }
-    show raw.where(block: false): code-inline-rule.with(dedup-styles: dedup-styles)
-    show raw.where(block: true): code-rule.with(
-      dedup-styles: dedup-styles,
-      copy-button: copy-button,
-    )
-    body
-
-    if attach-styles {
-      html-style(additional-styles())
-    }
+  import "core.typ": code-inline-rule, code-rule, code-span-rule
+  
+  // Dedup styles and override code rendering rules
+  show html.elem.where(tag: "code"): it => if dedup-styles {
+    show html.elem.where(tag: "span"): code-span-rule
+    it
   } else {
-    body
+    it
+  }
+  show raw.where(block: false): code-inline-rule
+  show raw.where(block: true): code-rule.with(copy-button: copy-button)
+  body
+
+  // Attach generated styles at the end of the document
+  if attach-styles {
+    html-style(additional-styles())
   }
 }

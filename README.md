@@ -81,7 +81,7 @@ Generates headless HTML structure that you can style with your own CSS:
 ```html
 <div class="hypraw">
   <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="..." />
-  <pre><code class="language-rust">
+  <pre><code data-lang="rust">
     <span class="c0">fn</span> <span class="c1">main</span>...
   </code></pre>
 </div>

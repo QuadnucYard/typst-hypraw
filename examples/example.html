@@ -9,67 +9,78 @@
     <p>This demonstrates usage of hypraw with copy buttons disabled.</p>
     <p>All code blocks in this document have no copy buttons. This is controlled by the global setting:</p>
     <div class="hypraw">
-      <pre><code class="language-typ"><span class="c0">#</span><span class="c0">show</span>: hypraw.<span class="c1">with</span>(copy-button: <span class="c0">false</span>)</code></pre>
+      <pre><code data-lang="typ"><span class="c0">#</span><span class="c0">show</span>: hypraw.<span class="c1">with</span>(copy-button: <span class="c0">false</span>)</code></pre>
     </div>
     <h3>Inline Code</h3>
     <p>Inline raw: <code class="hypraw">#import "/src/lib.typ": *</code> or with language <code class="hypraw language-typ"><span class="c0">#</span><span class="c0">import</span> <span class="c2">"/src/lib.typ"</span>: <span class="c0">*</span></code></p>
     <h3>Block Code</h3>
     <div class="hypraw">
-      <pre><code class="language-typ"><span class="c0">#</span><span class="c0">let</span> <span class="c1">hypraw</span>(body, dedup-styles: <span class="c0">true</span>) <span class="c0">=</span> <span class="c0">context</span> {
-  <span class="c0">if</span> <span class="c1">is-html-target</span>() {
-    <span class="c0">import</span> <span class="c2">"core.typ"</span>: show-html, show-html-inline
+      <pre><code data-lang="typ"><span class="c0">#</span><span class="c0">let</span> <span class="c1">hypraw</span>(body, dedup-styles: <span class="c0">true</span>, attach-styles: <span class="c0">true</span>, copy-button: <span class="c0">true</span>) <span class="c0">=</span> <span class="c0">context</span> {
+  <span class="c0">if</span> <span class="c0">not</span> <span class="c1">is-html-target</span>() {
+    <span class="c0">return</span> body
+  }
 
-    <span class="c0">show</span> <span class="c1">raw</span>: it <span class="c0">=></span> {
-      <span class="c0">show</span> <span class="c1">underline</span>: html.elem.<span class="c1">with</span>(<span class="c2">"span"</span>, attrs: (class: <span class="c2">"underline"</span>))
-      it
-    }
-    <span class="c0">show</span> raw.<span class="c1">where</span>(block: <span class="c0">false</span>): show-html-inline.<span class="c1">with</span>(dedup-styles: dedup-styles)
-    <span class="c0">show</span> raw.<span class="c1">where</span>(block: <span class="c0">true</span>): show-html.<span class="c1">with</span>(dedup-styles: dedup-styles)
-    body
+  <span class="c0">import</span> <span class="c2">"core.typ"</span>: code-inline-rule, code-rule, code-span-rule
+
+  <span class="c3">// Dedup styles and override code rendering rules</span>
+  <span class="c0">show</span> html.elem.<span class="c1">where</span>(tag: <span class="c2">"code"</span>): it <span class="c0">=></span> <span class="c0">if</span> dedup-styles {
+    <span class="c0">show</span> html.elem.<span class="c1">where</span>(tag: <span class="c2">"span"</span>): <span class="c1">code-span-rule</span>
+    it
   } <span class="c0">else</span> {
-    body
+    it
+  }
+  <span class="c0">show</span> raw.<span class="c1">where</span>(block: <span class="c0">false</span>): <span class="c1">code-inline-rule</span>
+  <span class="c0">show</span> raw.<span class="c1">where</span>(block: <span class="c0">true</span>): code-rule.<span class="c1">with</span>(copy-button: copy-button)
+  body
+
+  <span class="c3">// Attach generated styles at the end of the document</span>
+  <span class="c0">if</span> attach-styles {
+    <span class="c1">html-style</span>(<span class="c1">additional-styles</span>())
   }
 }</code></pre>
     </div>
     <h3>Note</h3>
     <p>Since <code class="hypraw">hypraw</code> is stateless and affects the entire document, you cannot mix enabled and disabled copy buttons within the same document. Use separate documents for different settings.</p>
-    <style>/* Example Styles */
-:root {
-  --hypraw-bg-color: hsla(0, 0%, 96%, 1);
-  --hypraw-border-radius: 0.5em;
-  --hypraw-padding: 0.7em;
-  --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
-  --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
-  --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
-}
-
-.hypraw {
-  position: relative;
-}
-
-.hypraw pre > code {
-  display: block;
-  overflow: auto;
-  padding: var(--hypraw-padding);
-  border-radius: var(--hypraw-border-radius);
-  color: var(--hypraw-fg-color);
-  background: var(--hypraw-bg-color);
-}
-
-code.hypraw {
-  padding: 0 0.3em;
-  border-radius: 0.3em;
-  color: var(--hypraw-fg-color);
-  background: var(--hypraw-bg-color);
-}
-
-.hypraw .underline {
-  text-decoration: underline;
-}
-</style>
-    <style>.hypraw .c0{color:#d73a49;}
-.hypraw .c1{color:#4b69c6;}
-.hypraw .c2{color:#298e0d;}
-</style>
+    <style>
+      /* Example Styles */
+      :root {
+        --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+        --hypraw-border-radius: 0.5em;
+        --hypraw-padding: 0.7em;
+        --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+        --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+        --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+      }
+      
+      .hypraw {
+        position: relative;
+      }
+      
+      .hypraw pre > code {
+        display: block;
+        overflow: auto;
+        padding: var(--hypraw-padding);
+        border-radius: var(--hypraw-border-radius);
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+      
+      code.hypraw {
+        padding: 0 0.3em;
+        border-radius: 0.3em;
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+      
+      .hypraw .underline {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
+      .hypraw .c0{color: #d73948}
+      .hypraw .c1{color: #4b69c6}
+      .hypraw .c2{color: #198810}
+      .hypraw .c3{color: #74747c}
+    </style>
   </body>
 </html>
