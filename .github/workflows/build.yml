@@ -1,8 +1,7 @@
 name: Build Package
 on:
-  push:
-  pull_request:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:
@@ -20,7 +19,7 @@ jobs:
       - name: Install tools
         uses: taiki-e/install-action@v2
         with:
-          tool: just
+          tool: just,typlite
 
       - name: Build package
         run: just package

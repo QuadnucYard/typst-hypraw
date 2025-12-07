@@ -8,3 +8,6 @@ default:
 
 package target="out":
   nu scripts/package.nu {{target}}
+
+build-readme:
+  typlite README.typ README.md --assets-path assets
