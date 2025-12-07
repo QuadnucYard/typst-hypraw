@@ -15,6 +15,12 @@
     <p>All code blocks above include copy buttons (📋) that allow one-click copying of the code content. The buttons are headless and fully customizable via CSS.</p>
     <div class="hypraw">
       <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="/* Copy button styles */
+:root {
+  --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+  --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+  --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+}
+
 .hypraw-copy-btn {
   position: absolute;
   top: 0.5em;
@@ -55,6 +61,12 @@
   color: hsla(120, 60%, 40%, 1);
 }"></button>
       <pre><code data-lang="css"><span class="c2">/*</span><span class="c2"> Copy button styles </span><span class="c2">*/</span>
+<span class="c3">:</span><span class="c3">root</span> {
+  <span class="c1">--</span><span class="c1">hypraw-copy-btn-bg</span>: <span class="c1">hsla</span>(<span class="c4">0</span>, <span class="c4">0</span><span class="c0">%</span>, <span class="c4">88</span><span class="c0">%</span>, <span class="c4">1</span>);
+  <span class="c1">--</span><span class="c1">hypraw-copy-btn-hover-bg</span>: <span class="c1">hsla</span>(<span class="c4">0</span>, <span class="c4">0</span><span class="c0">%</span>, <span class="c4">82</span><span class="c0">%</span>, <span class="c4">1</span>);
+  <span class="c1">--</span><span class="c1">hypraw-copy-btn-active-bg</span>: <span class="c1">hsla</span>(<span class="c4">0</span>, <span class="c4">0</span><span class="c0">%</span>, <span class="c4">76</span><span class="c0">%</span>, <span class="c4">1</span>);
+}
+
 <span class="c3">.</span><span class="c3">hypraw-copy-btn</span> {
   <span class="c1">position</span>: <span class="c1">absolute</span>;
   <span class="c1">top</span>: <span class="c4">0</span><span class="c4">.</span><span class="c4">5</span><span class="c0">em</span>;
@@ -172,40 +184,50 @@
       })();
     </script>
     <style>
-      /* Example Styles */
+      /* Base Styles */
+      
       :root {
         --hypraw-bg-color: hsla(0, 0%, 96%, 1);
         --hypraw-border-radius: 0.5em;
         --hypraw-padding: 0.7em;
-        --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
-        --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
-        --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
       }
       
+      /* Base container */
       .hypraw {
         position: relative;
+      }
+      
+      .hypraw pre {
+        margin: 0;
       }
       
       .hypraw pre > code {
         display: block;
         overflow: auto;
-        padding: var(--hypraw-padding);
         border-radius: var(--hypraw-border-radius);
         color: var(--hypraw-fg-color);
         background: var(--hypraw-bg-color);
       }
       
+      /* Code blocks without line numbers - original padding */
+      .hypraw:not(.has-line-numbers) pre > code {
+        padding: var(--hypraw-padding);
+      }
+      
+      /* Inline code */
       code.hypraw {
         padding: 0 0.3em;
         border-radius: 0.3em;
         color: var(--hypraw-fg-color);
         background: var(--hypraw-bg-color);
       }
-      
-      .hypraw .underline {
-        text-decoration: underline;
-      }
       /* Copy button styles */
+      :root {
+        --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+        --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+        --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
+      }
+      
       .hypraw-copy-btn {
         position: absolute;
         top: 0.5em;

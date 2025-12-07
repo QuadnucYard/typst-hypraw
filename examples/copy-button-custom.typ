@@ -1,6 +1,6 @@
 #import "/src/lib.typ": *
 
-#show: hypraw
+#show: hypraw.with(line-numbers: false, copy-button: true)
 
 = CSS Customization Examples
 
@@ -70,4 +70,5 @@ This document demonstrates how to customize copy button appearance using CSS tar
 #m4
 
 #html-script(read("copy-to-clipboard.js"))
-#html-style(read("copy-button-styles.css") + (m1, m2, m3, m4).map(it => it.text).join())
+#html-style(read("base.css"))
+#html-style(read("copy-button.css") + (m1, m2, m3, m4).map(it => it.text).join())

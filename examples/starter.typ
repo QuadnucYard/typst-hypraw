@@ -1,6 +1,6 @@
 #import "/src/lib.typ": *
 
-#show: hypraw.with(copy-button: false)
+#show: hypraw.with(line-numbers: false, copy-button: false)
 
 = Hypraw Example (Without Copy Buttons)
 
@@ -48,4 +48,4 @@ Inline raw: `#import "/src/lib.typ": *` or with language ```typ #import "/src/li
 
 Since `hypraw` is stateless and affects the entire document, you cannot mix enabled and disabled copy buttons within the same document. Use separate documents for different settings.
 
-#html-style(read("example.css"))
+#html-style(read("base.css"))

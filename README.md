@@ -8,6 +8,7 @@ A lightweight package for creating headless code blocks optimized for HTML expor
 
 - Generates clean, semantic HTML structure
 - CSS class deduplication for smaller output
+- **Line numbers** — expressive-code styled gutter with proper accessibility
 - **Copy button support** — headless, accessible, and customizable
 
 ## Installation
@@ -40,13 +41,16 @@ See `examples/` directory for complete styling implementation.
 
 ## API
 
-### `hypraw(body, dedup-styles: true, attach-styles: true, copy-button: true)`
+### `hypraw`
 
 Enables enhanced HTML code block rendering.
 
 ```typ
 // Enable hypraw for entire document (use only once)
 #show: hypraw
+
+// Enable line numbers (expressive-code style)
+#show: hypraw.with(line-numbers: true)
 
 // To disable copy button for entire document
 #show: hypraw.with(copy-button: false)
@@ -86,6 +90,26 @@ Generates headless HTML structure that you can style with your own CSS:
   </code></pre>
 </div>
 ```
+
+### With Line Numbers
+
+When `line-numbers: true` is enabled, the structure includes a gutter:
+
+```html
+<div class="hypraw has-line-numbers" style="--ln-width:3ch">
+  <button class="hypraw-copy-btn" aria-label="Copy code" data-copy="..." />
+  <pre><code data-lang="rust"><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">fn</span> <span class="c1">main</span>() {</div></div><!-- More lines... --></code></pre>
+</div>
+```
+
+Key features:
+- `.has-line-numbers` class enables line number layout
+- `aria-hidden="true"` on line numbers for screen reader accessibility
+- `--ln-width` CSS variable auto-adjusts for longer line numbers
+- Grid layout separates gutter from code content
+- `.ec-line` class follows expressive-code conventions
+
+### Copy Button
 
 The copy button includes:
 

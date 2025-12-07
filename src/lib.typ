@@ -22,14 +22,21 @@
 ///
 /// - dedup-styles (bool): Deduplicate CSS styles for smaller output (default: true)
 /// - attach-styles (bool): Automatically include generated CSS styles (default: true)
-/// - copy-button (bool): Add copy button to code blocks (default: true)
-#let hypraw(body, dedup-styles: true, attach-styles: true, copy-button: true) = context {
+/// - line-numbers (bool): Show line numbers in a gutter (default: false)
+/// - copy-button (bool): Add copy button to code blocks (default: false)
+#let hypraw(
+  body,
+  dedup-styles: true,
+  attach-styles: true,
+  line-numbers: false,
+  copy-button: false,
+) = context {
   if not is-html-target() {
     return body
   }
 
   import "core.typ": code-inline-rule, code-rule, code-span-rule
-  
+
   // Dedup styles and override code rendering rules
   show html.elem.where(tag: "code"): it => if dedup-styles {
     show html.elem.where(tag: "span"): code-span-rule
@@ -38,7 +45,7 @@
     it
   }
   show raw.where(block: false): code-inline-rule
-  show raw.where(block: true): code-rule.with(copy-button: copy-button)
+  show raw.where(block: true): code-rule.with(copy-button: copy-button, line-numbers: line-numbers)
   body
 
   // Attach generated styles at the end of the document

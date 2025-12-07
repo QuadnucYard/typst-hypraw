@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h2>Hypraw Line Numbers Example</h2>
+    <p>This demonstrates usage of hypraw with line numbers enabled (expressive-code style).</p>
+    <h3>Basic Usage</h3>
+    <p>Enable line numbers for all code blocks in your document:</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="typ"><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">#</span><span class="c0">show</span>: hypraw.<span class="c1">with</span>(line-numbers: <span class="c0">true</span>)</div></div></code></pre>
+    </div>
+    <h3>Code Examples</h3>
+    <p>Here’s a Rust example with line numbers:</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="rust"><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">fn</span> <span class="c1">main</span>() {</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code">    <span class="c2">println!</span>(<span class="c3">"</span><span class="c3">Hello, world!</span><span class="c3">"</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code">    <span class="c0">let</span> x <span class="c0">=</span> <span class="c4">42</span>;</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">4</span></div></div><div class="code">    <span class="c0">let</span> y <span class="c0">=</span> x <span class="c0">*</span> <span class="c4">2</span>;</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">5</span></div></div><div class="code">    <span class="c2">println!</span>(<span class="c3">"</span><span class="c3">x = </span><span class="c4">{}</span><span class="c3">, y = </span><span class="c4">{}</span><span class="c3">"</span>, x, y);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">6</span></div></div><div class="code">}</div></div></code></pre>
+    </div>
+    <p>Here’s a longer example to demonstrate line number width handling:</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="js"><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c5">//</span><span class="c5"> JavaScript example</span></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code"><span class="c0">function</span> <span class="c1">fibonacci</span>(n) {</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code">    <span class="c0">if</span> (n <span class="c0">&lt;=</span> <span class="c4">1</span>) <span class="c0">return</span> n;</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">4</span></div></div><div class="code">    <span class="c0">return</span> <span class="c1">fibonacci</span>(n <span class="c0">-</span> <span class="c4">1</span>) <span class="c0">+</span> <span class="c1">fibonacci</span>(n <span class="c0">-</span> <span class="c4">2</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">5</span></div></div><div class="code">}</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">6</span></div></div><div class="code"></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">7</span></div></div><div class="code"><span class="c0">const</span> numbers <span class="c0">=</span> [<span class="c4">1</span>, <span class="c4">2</span>, <span class="c4">3</span>, <span class="c4">4</span>, <span class="c4">5</span>, <span class="c4">6</span>, <span class="c4">7</span>, <span class="c4">8</span>, <span class="c4">9</span>, <span class="c4">10</span>];</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">8</span></div></div><div class="code"><span class="c0">const</span> doubled <span class="c0">=</span> numbers.<span class="c1">map</span>(n <span class="c0">=></span> n <span class="c0">*</span> <span class="c4">2</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">9</span></div></div><div class="code"><span class="c0">const</span> filtered <span class="c0">=</span> doubled.<span class="c1">filter</span>(n <span class="c0">=></span> n <span class="c0">></span> <span class="c4">10</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">10</span></div></div><div class="code"></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">11</span></div></div><div class="code"><span class="c1">console</span>.<span class="c1">log</span>(<span class="c3">'</span><span class="c3">Fibonacci sequence:</span><span class="c3">'</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">12</span></div></div><div class="code"><span class="c0">for</span> (<span class="c0">let</span> i <span class="c0">=</span> <span class="c4">0</span>; i <span class="c0">&lt;</span> <span class="c4">15</span>; i<span class="c0">++</span>) {</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">13</span></div></div><div class="code">    <span class="c1">console</span>.<span class="c1">log</span>(<span class="c3">`</span><span class="c3">  fib(</span><span class="c6">${</span><span class="c6">i</span><span class="c6">}</span><span class="c3">) = </span><span class="c6">${</span><span class="c1">fibonacci</span><span class="c6">(</span><span class="c6">i</span><span class="c6">)</span><span class="c6">}</span><span class="c3">`</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">14</span></div></div><div class="code">}</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">15</span></div></div><div class="code"></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">16</span></div></div><div class="code"><span class="c5">//</span><span class="c5"> More lines to show line number width adjustment</span></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">17</span></div></div><div class="code"><span class="c0">const</span> result <span class="c0">=</span> filtered.<span class="c1">reduce</span>((acc, curr) <span class="c0">=></span> acc <span class="c0">+</span> curr, <span class="c4">0</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">18</span></div></div><div class="code"><span class="c1">console</span>.<span class="c1">log</span>(<span class="c3">`</span><span class="c3">Sum of filtered numbers: </span><span class="c6">${</span><span class="c6">result</span><span class="c6">}</span><span class="c3">`</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">19</span></div></div><div class="code"></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">20</span></div></div><div class="code"><span class="c0">export</span> { fibonacci, numbers };</div></div></code></pre>
+    </div>
+    <h3>HTML Output Structure</h3>
+    <p>The line numbers feature generates this HTML structure:</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="html"><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code">&lt;<span class="c1">div</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">hypraw</span><span class="c3"> </span><span class="c3">has-line-numbers</span><span class="c3">"</span>></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code">  &lt;<span class="c1">pre</span>>&lt;<span class="c1">code</span> <span class="c6">data-lang</span>=<span class="c3">"</span><span class="c3">rust</span><span class="c3">"</span>>&lt;<span class="c1">div</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">ec-line</span><span class="c3">"</span>>&lt;<span class="c1">div</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">gutter</span><span class="c3">"</span>>&lt;<span class="c1">div</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">ln</span><span class="c3">"</span>>&lt;<span class="c1">span</span> <span class="c6">aria-hidden</span>=<span class="c3">"</span><span class="c3">true</span><span class="c3">"</span>>1&lt;/<span class="c1">span</span>>&lt;/<span class="c1">div</span>>&lt;/<span class="c1">div</span>>&lt;<span class="c1">div</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">code</span><span class="c3">"</span>>&lt;<span class="c1">span</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">c0</span><span class="c3">"</span>>fn&lt;/<span class="c1">span</span>> &lt;<span class="c1">span</span> <span class="c6">class</span>=<span class="c3">"</span><span class="c3">c1</span><span class="c3">"</span>>main&lt;/<span class="c1">span</span>>() {&lt;/<span class="c1">div</span>>&lt;/<span class="c1">div</span>><span class="c5">&lt;!--</span><span class="c5"> More lines... </span><span class="c5">--></span>&lt;/<span class="c1">code</span>>&lt;/<span class="c1">pre</span>></div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code">&lt;/<span class="c1">div</span>></div></div></code></pre>
+    </div>
+    <p>Key features:</p>
+    <ul>
+      <li><code class="hypraw">.has-line-numbers</code> class enables line number layout via CSS</li>
+      <li>Line numbers use <code class="hypraw">aria-hidden="true"</code> for accessibility (screen readers skip them)</li>
+      <li>Grid layout separates gutter and code content</li>
+      <li>CSS variable <code class="hypraw">--ln-width</code> adjusts for longer line numbers (> 99 lines)</li>
+      <li>Gutter border provides visual separation</li>
+    </ul>
+    <script>
+      /**
+       * Copy button functionality for hypraw code blocks
+       */
+      
+      (() => {
+        /**
+         * Copy text to clipboard using the modern Clipboard API with fallback
+         * @param {string} text - Text to copy
+         * @returns {Promise<boolean>} - Success status
+         */
+        async function copyToClipboard(text) {
+          // Modern Clipboard API
+          if (navigator.clipboard && window.isSecureContext) {
+            try {
+              await navigator.clipboard.writeText(text);
+              return true;
+            } catch (err) {
+              console.warn("Clipboard API failed", err);
+            }
+          }
+        }
+      
+        /**
+         * Handle copy button click
+         * @param {Event} event - Click event
+         */
+        async function handleCopyClick(event) {
+          const button = event.target;
+          const textToCopy = button.getAttribute("data-copy");
+      
+          if (!textToCopy) {
+            console.warn("No text to copy found in data-copy attribute");
+            return;
+          }
+      
+          const success = await copyToClipboard(textToCopy);
+      
+          if (success) {
+            // Visual feedback
+            button.classList.add("copied");
+            button.setAttribute("aria-label", "Copied!");
+      
+            // Reset after 2 seconds
+            setTimeout(() => {
+              button.classList.remove("copied");
+              button.setAttribute("aria-label", "Copy code");
+            }, 2000);
+          } else {
+            // Error feedback
+            button.setAttribute("aria-label", "Copy failed");
+            setTimeout(() => {
+              button.setAttribute("aria-label", "Copy code");
+            }, 2000);
+          }
+        }
+      
+        /**
+         * Initialize copy buttons when DOM is ready
+         */
+        function initializeCopyButtons() {
+          const copyButtons = document.querySelectorAll(".hypraw-copy-btn");
+      
+          copyButtons.forEach((button) => {
+            button.addEventListener("click", handleCopyClick);
+          });
+        }
+      
+        // Initialize when DOM is ready
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initializeCopyButtons);
+        } else {
+          initializeCopyButtons();
+        }
+      })();
+    </script>
+    <style>
+      /* Base Styles */
+      
+      :root {
+        --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+        --hypraw-border-radius: 0.5em;
+        --hypraw-padding: 0.7em;
+      }
+      
+      /* Base container */
+      .hypraw {
+        position: relative;
+      }
+      
+      .hypraw pre {
+        margin: 0;
+      }
+      
+      .hypraw pre > code {
+        display: block;
+        overflow: auto;
+        border-radius: var(--hypraw-border-radius);
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+      
+      /* Code blocks without line numbers - original padding */
+      .hypraw:not(.has-line-numbers) pre > code {
+        padding: var(--hypraw-padding);
+      }
+      
+      /* Inline code */
+      code.hypraw {
+        padding: 0 0.3em;
+        border-radius: 0.3em;
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+    </style>
+    <style>
+      /* Line Numbers Styles - Expressive Code Inspired */
+      
+      :root {
+        --hypraw-gutter-fg: hsla(0, 0%, 50%, 0.7);
+        --hypraw-gutter-highlight-fg: hsla(0, 0%, 30%, 0.9);
+        --hypraw-gutter-border-color: hsla(0, 0%, 0%, 0.1);
+        --hypraw-gutter-border-width: 1.5px;
+      }
+      
+      /* Individual code line - Grid layout for gutter + code */
+      .hypraw.has-line-numbers .ec-line {
+        /* RTL support: Code is always LTR */
+        direction: ltr;
+        unicode-bidi: isolate;
+      
+        /* Grid layout for gutter and code */
+        display: grid;
+        grid-template-areas: "gutter code";
+        grid-template-columns: auto 1fr;
+        position: relative;
+      }
+      
+      /* First/last line padding */
+      .hypraw.has-line-numbers .ec-line:first-child {
+        padding-top: var(--hypraw-padding);
+      }
+      
+      .hypraw.has-line-numbers .ec-line:last-child {
+        padding-bottom: var(--hypraw-padding);
+      }
+      
+      /* Gutter container */
+      .hypraw .gutter {
+        grid-area: gutter;
+        color: var(--hypraw-gutter-fg);
+        /* Make gutter elements non-interactive by default */
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      
+      /* Line number element */
+      .hypraw .gutter .ln {
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        box-sizing: content-box;
+        min-width: var(--ln-width, 2ch);
+        padding-inline: 2ch;
+      }
+      
+      /* Code content container */
+      .hypraw.has-line-numbers .ec-line .code {
+        grid-area: code;
+        position: relative;
+        box-sizing: content-box;
+        padding-inline-start: var(--hypraw-padding);
+        padding-inline-end: var(--hypraw-padding);
+        /* Border between gutter and code */
+        border-inline-start: var(--hypraw-gutter-border-width) solid var(--hypraw-gutter-border-color);
+      }
+      
+      /* Highlighted line support */
+      .hypraw .ec-line.highlight .gutter {
+        color: var(--hypraw-gutter-highlight-fg);
+      }
+    </style>
+    <style>
+      .hypraw .c0{color: #d73948}
+      .hypraw .c1{color: #4b69c6}
+      .hypraw .c2{color: #16718d}
+      .hypraw .c3{color: #198810}
+      .hypraw .c4{color: #b60157}
+      .hypraw .c5{color: #74747c}
+      .hypraw .c6{color: #8b41b1}
+    </style>
+  </body>
+</html>

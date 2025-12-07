@@ -177,30 +177,51 @@
       })();
     </script>
     <style>
-      /* Copy Button Customization Styles */
+      /* Base Styles */
       
-      /* Base styles for all examples */
       :root {
         --hypraw-bg-color: hsla(0, 0%, 96%, 1);
         --hypraw-border-radius: 0.5em;
         --hypraw-padding: 0.7em;
-        --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
-        --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
-        --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
       }
       
+      /* Base container */
       .hypraw {
         position: relative;
-        margin: 1rem 0;
+      }
+      
+      .hypraw pre {
+        margin: 0;
       }
       
       .hypraw pre > code {
         display: block;
         overflow: auto;
-        padding: var(--hypraw-padding);
         border-radius: var(--hypraw-border-radius);
         color: var(--hypraw-fg-color);
         background: var(--hypraw-bg-color);
+      }
+      
+      /* Code blocks without line numbers - original padding */
+      .hypraw:not(.has-line-numbers) pre > code {
+        padding: var(--hypraw-padding);
+      }
+      
+      /* Inline code */
+      code.hypraw {
+        padding: 0 0.3em;
+        border-radius: 0.3em;
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+    </style>
+    <style>
+      /* Copy Button Styles */
+      
+      :root {
+        --hypraw-copy-btn-bg: hsla(0, 0%, 88%, 1);
+        --hypraw-copy-btn-hover-bg: hsla(0, 0%, 82%, 1);
+        --hypraw-copy-btn-active-bg: hsla(0, 0%, 76%, 1);
       }
       
       /* Base copy button styles */

@@ -1,0 +1,65 @@
+/* Line Numbers Styles - Expressive Code Inspired */
+
+:root {
+  --hypraw-gutter-fg: hsla(0, 0%, 50%, 0.7);
+  --hypraw-gutter-highlight-fg: hsla(0, 0%, 30%, 0.9);
+  --hypraw-gutter-border-color: hsla(0, 0%, 0%, 0.1);
+  --hypraw-gutter-border-width: 1.5px;
+}
+
+/* Individual code line - Grid layout for gutter + code */
+.hypraw.has-line-numbers .ec-line {
+  /* RTL support: Code is always LTR */
+  direction: ltr;
+  unicode-bidi: isolate;
+
+  /* Grid layout for gutter and code */
+  display: grid;
+  grid-template-areas: "gutter code";
+  grid-template-columns: auto 1fr;
+  position: relative;
+}
+
+/* First/last line padding */
+.hypraw.has-line-numbers .ec-line:first-child {
+  padding-top: var(--hypraw-padding);
+}
+
+.hypraw.has-line-numbers .ec-line:last-child {
+  padding-bottom: var(--hypraw-padding);
+}
+
+/* Gutter container */
+.hypraw .gutter {
+  grid-area: gutter;
+  color: var(--hypraw-gutter-fg);
+  /* Make gutter elements non-interactive by default */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Line number element */
+.hypraw .gutter .ln {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  box-sizing: content-box;
+  min-width: var(--ln-width, 2ch);
+  padding-inline: 2ch;
+}
+
+/* Code content container */
+.hypraw.has-line-numbers .ec-line .code {
+  grid-area: code;
+  position: relative;
+  box-sizing: content-box;
+  padding-inline-start: var(--hypraw-padding);
+  padding-inline-end: var(--hypraw-padding);
+  /* Border between gutter and code */
+  border-inline-start: var(--hypraw-gutter-border-width) solid var(--hypraw-gutter-border-color);
+}
+
+/* Highlighted line support */
+.hypraw .ec-line.highlight .gutter {
+  color: var(--hypraw-gutter-highlight-fg);
+}
