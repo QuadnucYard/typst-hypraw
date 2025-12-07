@@ -8,6 +8,7 @@ def main [target_dir: string = "out"] {
 
     # If the target directory exists, remove its contents; otherwise, create it
     if ($target_dir | path exists) {
+        print $"Removing existing contents of ($target_dir)..."
         rm -rf $"($target_dir)/*"
     } else {
         mkdir $target_dir
@@ -38,10 +39,8 @@ def build_readme [target_dir: string] {
         | str replace "#let is-universe-target = false" "#let is-universe-target = true"
         | save $readme_typ -f
 
-    let readme_tmp = "README.tmp.md"
     let readme = "README.md"
-    typlite README.typ $readme_tmp --assets-path assets --root (".." | path expand)
+    typlite README.typ $readme --root (".." | path expand)
 
-    rm $readme_tmp
     rm $readme_typ
 }
