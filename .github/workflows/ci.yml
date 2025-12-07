@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Nushell
+        uses: hustcer/setup-nu@v3
+
+      - name: Setup typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile examples
+        run: nu scripts/compile-examples.nu
+
+      - name: Check unstaged changes
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "There are unstaged changes after compiling examples. Please commit the changes."
+            git status
+            exit 1
+          fi

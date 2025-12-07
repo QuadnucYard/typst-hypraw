@@ -1,0 +1,32 @@
+name: Build Package
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Nushell
+        uses: hustcer/setup-nu@v3
+
+      - name: Setup typst
+        uses: typst-community/setup-typst@v3
+
+      - name: Install tools
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
+
+      - name: Build package
+        run: just package
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: hypraw
+          path: out/
