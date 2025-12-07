@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h2>Hypraw Line Highlight Example</h2>
+    <p>Highlight specific lines (1-based indices):</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="js"><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 1 - highlighted</span><span class="c1">'</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 2 - normal</span><span class="c1">'</span>);</div></div><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 3 - highlighted</span><span class="c1">'</span>);</div></div></code></pre>
+    </div>
+    <p>Highlight ranges and individual lines:</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="js"><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 1 - highlighted</span><span class="c1">'</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 2 - normal</span><span class="c1">'</span>);</div></div><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 3 - highlighted</span><span class="c1">'</span>);</div></div><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">4</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 4 - highlighted</span><span class="c1">'</span>);</div></div><div class="ec-line highlight"><div class="gutter"><div class="ln"><span aria-hidden="true">5</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 5 - highlighted</span><span class="c1">'</span>);</div></div></code></pre>
+    </div>
+    <p>Use different highlight styles (ins/del/mark):</p>
+    <div class="hypraw has-line-numbers">
+      <pre><code data-lang="js"><div class="ec-line ins"><div class="gutter"><div class="ln"><span aria-hidden="true">1</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 1 - inserted</span><span class="c1">'</span>);</div></div><div class="ec-line ins"><div class="gutter"><div class="ln"><span aria-hidden="true">2</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 2 - inserted</span><span class="c1">'</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">3</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 3 - normal</span><span class="c1">'</span>);</div></div><div class="ec-line del"><div class="gutter"><div class="ln"><span aria-hidden="true">4</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 4 - deleted</span><span class="c1">'</span>);</div></div><div class="ec-line"><div class="gutter"><div class="ln"><span aria-hidden="true">5</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 5 - normal</span><span class="c1">'</span>);</div></div><div class="ec-line mark"><div class="gutter"><div class="ln"><span aria-hidden="true">6</span></div></div><div class="code"><span class="c0">console</span>.<span class="c0">log</span>(<span class="c1">'</span><span class="c1">Line 6 - marked</span><span class="c1">'</span>);</div></div></code></pre>
+    </div>
+    <style>
+      /* Base Styles */
+      
+      :root {
+        --hypraw-bg-color: hsla(0, 0%, 96%, 1);
+        --hypraw-border-radius: 0.5em;
+        --hypraw-padding: 0.7em;
+      }
+      
+      /* Base container */
+      .hypraw {
+        position: relative;
+      }
+      
+      .hypraw pre {
+        margin: 0;
+      }
+      
+      .hypraw pre > code {
+        display: block;
+        overflow: auto;
+        padding: var(--hypraw-padding);
+        border-radius: var(--hypraw-border-radius);
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+      
+      /* Inline code */
+      code.hypraw {
+        padding: 0 0.3em;
+        border-radius: 0.3em;
+        color: var(--hypraw-fg-color);
+        background: var(--hypraw-bg-color);
+      }
+    </style>
+    <style>
+      /* Line Numbers Styles - Expressive Code Inspired */
+      
+      :root {
+        --hypraw-gutter-fg: hsla(0, 0%, 50%, 0.7);
+        --hypraw-gutter-highlight-fg: hsla(0, 0%, 30%, 0.9);
+        --hypraw-gutter-border-color: hsla(0, 0%, 0%, 0.1);
+        --hypraw-gutter-border-width: 1.5px;
+      }
+      
+      /* Code blocks with line numbers */
+      .hypraw.has-line-numbers pre > code {
+        padding: var(--hypraw-padding) 0;
+      }
+      
+      /* Individual code line - Grid layout for gutter + code */
+      .hypraw.has-line-numbers .ec-line {
+        /* RTL support: Code is always LTR */
+        direction: ltr;
+        unicode-bidi: isolate;
+      
+        /* Grid layout for gutter and code */
+        display: grid;
+        grid-template-areas: "gutter code";
+        grid-template-columns: auto 1fr;
+        position: relative;
+      }
+      
+      /* Gutter container */
+      .hypraw .gutter {
+        grid-area: gutter;
+        color: var(--hypraw-gutter-fg);
+        /* Make gutter elements non-interactive by default */
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      
+      /* Line number element */
+      .hypraw .gutter .ln {
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        box-sizing: content-box;
+        min-width: var(--ln-width, 2ch);
+        padding-inline: 2ch;
+      }
+      
+      /* Code content container */
+      .hypraw.has-line-numbers .ec-line .code {
+        grid-area: code;
+        position: relative;
+        box-sizing: content-box;
+        padding-inline-start: var(--hypraw-padding);
+        padding-inline-end: var(--hypraw-padding);
+        /* Border between gutter and code */
+        border-inline-start: var(--hypraw-gutter-border-width) solid var(--hypraw-gutter-border-color);
+      }
+    </style>
+    <style>
+      /* Highlighted line support */
+      .hypraw .ec-line.highlight {
+        background: hsla(210, 100%, 50%, 0.08);
+      }
+      
+      .hypraw .ec-line.highlight .gutter {
+        color: var(--hypraw-gutter-highlight-fg);
+      }
+      
+      .hypraw .ec-line.highlight .code {
+        border-inline-start-color: hsla(210, 100%, 50%, 0.3);
+      }
+      
+      /* Insert/Delete/Mark line effects (expressive-code style) */
+      .hypraw .ec-line.ins {
+        background: hsla(136, 60%, 50%, 0.1);
+      }
+      
+      .hypraw .ec-line.ins .code {
+        border-inline-start-color: hsla(136, 60%, 50%, 0.4);
+      }
+      
+      .hypraw .ec-line.del {
+        background: hsla(0, 60%, 50%, 0.1);
+      }
+      
+      .hypraw .ec-line.del .code {
+        border-inline-start-color: hsla(0, 60%, 50%, 0.4);
+      }
+      
+      .hypraw .ec-line.mark {
+        background: hsla(45, 100%, 50%, 0.15);
+      }
+      
+      .hypraw .ec-line.mark .code {
+        border-inline-start-color: hsla(45, 100%, 50%, 0.5);
+      }
+    </style>
+    <style>
+      .hypraw .c0{color: #4b69c6}
+      .hypraw .c1{color: #198810}
+    </style>
+  </body>
+</html>

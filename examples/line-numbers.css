@@ -7,6 +7,11 @@
   --hypraw-gutter-border-width: 1.5px;
 }
 
+/* Code blocks with line numbers */
+.hypraw.has-line-numbers pre > code {
+  padding: var(--hypraw-padding) 0;
+}
+
 /* Individual code line - Grid layout for gutter + code */
 .hypraw.has-line-numbers .ec-line {
   /* RTL support: Code is always LTR */
@@ -18,15 +23,6 @@
   grid-template-areas: "gutter code";
   grid-template-columns: auto 1fr;
   position: relative;
-}
-
-/* First/last line padding */
-.hypraw.has-line-numbers .ec-line:first-child {
-  padding-top: var(--hypraw-padding);
-}
-
-.hypraw.has-line-numbers .ec-line:last-child {
-  padding-bottom: var(--hypraw-padding);
 }
 
 /* Gutter container */
@@ -57,9 +53,4 @@
   padding-inline-end: var(--hypraw-padding);
   /* Border between gutter and code */
   border-inline-start: var(--hypraw-gutter-border-width) solid var(--hypraw-gutter-border-color);
-}
-
-/* Highlighted line support */
-.hypraw .ec-line.highlight .gutter {
-  color: var(--hypraw-gutter-highlight-fg);
 }

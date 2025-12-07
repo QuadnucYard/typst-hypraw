@@ -97,6 +97,5 @@ Key features:
 - CSS variable `--ln-width` adjusts for longer line numbers (> 99 lines)
 - Gutter border provides visual separation
 
-#html-script(read("copy-to-clipboard.js"))
 #html-style(read("base.css"))
 #html-style(read("line-numbers.css"))

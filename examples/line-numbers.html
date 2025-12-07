@@ -49,82 +49,6 @@
       <li>CSS variable <code class="hypraw">--ln-width</code> adjusts for longer line numbers (> 99 lines)</li>
       <li>Gutter border provides visual separation</li>
     </ul>
-    <script>
-      /**
-       * Copy button functionality for hypraw code blocks
-       */
-      
-      (() => {
-        /**
-         * Copy text to clipboard using the modern Clipboard API with fallback
-         * @param {string} text - Text to copy
-         * @returns {Promise<boolean>} - Success status
-         */
-        async function copyToClipboard(text) {
-          // Modern Clipboard API
-          if (navigator.clipboard && window.isSecureContext) {
-            try {
-              await navigator.clipboard.writeText(text);
-              return true;
-            } catch (err) {
-              console.warn("Clipboard API failed", err);
-            }
-          }
-        }
-      
-        /**
-         * Handle copy button click
-         * @param {Event} event - Click event
-         */
-        async function handleCopyClick(event) {
-          const button = event.target;
-          const textToCopy = button.getAttribute("data-copy");
-      
-          if (!textToCopy) {
-            console.warn("No text to copy found in data-copy attribute");
-            return;
-          }
-      
-          const success = await copyToClipboard(textToCopy);
-      
-          if (success) {
-            // Visual feedback
-            button.classList.add("copied");
-            button.setAttribute("aria-label", "Copied!");
-      
-            // Reset after 2 seconds
-            setTimeout(() => {
-              button.classList.remove("copied");
-              button.setAttribute("aria-label", "Copy code");
-            }, 2000);
-          } else {
-            // Error feedback
-            button.setAttribute("aria-label", "Copy failed");
-            setTimeout(() => {
-              button.setAttribute("aria-label", "Copy code");
-            }, 2000);
-          }
-        }
-      
-        /**
-         * Initialize copy buttons when DOM is ready
-         */
-        function initializeCopyButtons() {
-          const copyButtons = document.querySelectorAll(".hypraw-copy-btn");
-      
-          copyButtons.forEach((button) => {
-            button.addEventListener("click", handleCopyClick);
-          });
-        }
-      
-        // Initialize when DOM is ready
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", initializeCopyButtons);
-        } else {
-          initializeCopyButtons();
-        }
-      })();
-    </script>
     <style>
       /* Base Styles */
       
@@ -146,14 +70,10 @@
       .hypraw pre > code {
         display: block;
         overflow: auto;
+        padding: var(--hypraw-padding);
         border-radius: var(--hypraw-border-radius);
         color: var(--hypraw-fg-color);
         background: var(--hypraw-bg-color);
-      }
-      
-      /* Code blocks without line numbers - original padding */
-      .hypraw:not(.has-line-numbers) pre > code {
-        padding: var(--hypraw-padding);
       }
       
       /* Inline code */
@@ -174,6 +94,11 @@
         --hypraw-gutter-border-width: 1.5px;
       }
       
+      /* Code blocks with line numbers */
+      .hypraw.has-line-numbers pre > code {
+        padding: var(--hypraw-padding) 0;
+      }
+      
       /* Individual code line - Grid layout for gutter + code */
       .hypraw.has-line-numbers .ec-line {
         /* RTL support: Code is always LTR */
@@ -185,15 +110,6 @@
         grid-template-areas: "gutter code";
         grid-template-columns: auto 1fr;
         position: relative;
-      }
-      
-      /* First/last line padding */
-      .hypraw.has-line-numbers .ec-line:first-child {
-        padding-top: var(--hypraw-padding);
-      }
-      
-      .hypraw.has-line-numbers .ec-line:last-child {
-        padding-bottom: var(--hypraw-padding);
       }
       
       /* Gutter container */
@@ -224,11 +140,6 @@
         padding-inline-end: var(--hypraw-padding);
         /* Border between gutter and code */
         border-inline-start: var(--hypraw-gutter-border-width) solid var(--hypraw-gutter-border-color);
-      }
-      
-      /* Highlighted line support */
-      .hypraw .ec-line.highlight .gutter {
-        color: var(--hypraw-gutter-highlight-fg);
       }
     </style>
     <style>

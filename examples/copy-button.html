@@ -204,14 +204,10 @@
       .hypraw pre > code {
         display: block;
         overflow: auto;
+        padding: var(--hypraw-padding);
         border-radius: var(--hypraw-border-radius);
         color: var(--hypraw-fg-color);
         background: var(--hypraw-bg-color);
-      }
-      
-      /* Code blocks without line numbers - original padding */
-      .hypraw:not(.has-line-numbers) pre > code {
-        padding: var(--hypraw-padding);
       }
       
       /* Inline code */
