@@ -24,8 +24,14 @@ jobs:
       - name: Build package
         run: just package
 
+      - name: Archive artifacts
+        run: |
+          mkdir artifacts
+          cd out
+          zip -r ../artifacts/hypraw.zip .
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v5
         with:
           name: hypraw
-          path: out/
+          path: artifacts/
