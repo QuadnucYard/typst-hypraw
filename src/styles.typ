@@ -1,11 +1,14 @@
 
 #let _hypraw-state = state("hypraw-style", (:))
 
+/// Override settings for the next code block only. Settings reset after use.
 ///
-///
-/// - line-numbers ():
-/// - copy-button ():
-/// ->
+/// - line-numbers (auto, bool, int, array, none): Line number configuration:
+///   - `none` or `false`: Disable line numbers
+///   - `true`: Enable with default start (1)
+///   - `int`: Start from this line number
+///   - `array`: Custom labels per line (must match line count)
+/// - copy-button (auto, bool): Enable/disable copy button for next block
 #let hypraw-set(line-numbers: auto, copy-button: auto) = context {
   if line-numbers != auto {
     _hypraw-state.update(s => {

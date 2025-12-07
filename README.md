@@ -41,7 +41,7 @@ See `examples/` directory for complete styling implementation.
 
 ## API
 
-### `hypraw`
+### `hypraw(..)`
 
 Enables enhanced HTML code block rendering.
 
@@ -57,6 +57,21 @@ Enables enhanced HTML code block rendering.
 
 // Custom settings for entire document
 #show: hypraw.with(dedup-styles: false, attach-styles: false)
+```
+
+### `hypraw-set(line-numbers: auto, copy-button: auto)`
+
+Override settings for the next code block only. Resets after use.
+
+```typ
+// Disable line numbers for this block (when globally enabled)
+#hypraw-set(line-numbers: none)
+
+// Start from line 2
+#hypraw-set(line-numbers: 2)
+
+// Custom labels per line (e.g., for diff display)
+#hypraw-set(line-numbers: ("+", "-"))
 ```
 
 ### `additional-styles()`
