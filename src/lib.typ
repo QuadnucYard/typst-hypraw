@@ -1,6 +1,7 @@
 /// A lightweight package for creating headless code blocks optimized for HTML export.
 
 #import "core.typ": additional-styles
+#import "styles.typ": hypraw-set
 #import "utils.typ": is-html-target
 
 /// Creates a custom `<style>` element for HTML output. Ignored for other formats.

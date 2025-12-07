@@ -52,6 +52,34 @@ console.log(`Sum of filtered numbers: ${result}`);
 export { fibonacci, numbers };
 ```
 
+== Line Number Customization
+
+Use `hypraw-set()` to override settings for individual code blocks:
+
+Disable line numbers for this block only:
+
+#hypraw-set(line-numbers: none)
+```typ
+= H1
+== H2
+```
+
+Start from line 2:
+
+#hypraw-set(line-numbers: 2)
+```typ
+= H1
+== H2
+```
+
+Custom labels per line (e.g., for diff indicators):
+
+#hypraw-set(line-numbers: ("+", "-"))
+```typ
+= H1
+== H2
+```
+
 == HTML Output Structure
 
 The line numbers feature generates this HTML structure:
