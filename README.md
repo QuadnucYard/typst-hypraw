@@ -59,7 +59,7 @@ Enables enhanced HTML code block rendering.
 #show: hypraw.with(dedup-styles: false, attach-styles: false)
 ```
 
-### `hypraw-set(line-numbers: auto, copy-button: auto)`
+### `hypraw-set(line-numbers: auto, copy-button: auto, highlight: auto)`
 
 Override settings for the next code block only. Resets after use.
 
@@ -72,6 +72,13 @@ Override settings for the next code block only. Resets after use.
 
 // Custom labels per line (e.g., for diff display)
 #hypraw-set(line-numbers: ("+", "-"))
+
+// Highlight specific lines (0-based index)
+#hypraw-set(highlight: (0, 2))          // Lines 0 and 2
+#hypraw-set(highlight: (0, (2, 4)))     // Line 0 and lines 2-4
+
+// Use specific highlight classes (ins/del/mark)
+#hypraw-set(highlight: (ins: (0, 2), del: (3,)))
 ```
 
 ### `additional-styles()`

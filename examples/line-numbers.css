@@ -60,6 +60,39 @@
 }
 
 /* Highlighted line support */
+.hypraw .ec-line.highlight {
+  background: hsla(210, 100%, 50%, 0.08);
+}
+
 .hypraw .ec-line.highlight .gutter {
   color: var(--hypraw-gutter-highlight-fg);
+}
+
+.hypraw .ec-line.highlight .code {
+  border-inline-start-color: hsla(210, 100%, 50%, 0.3);
+}
+
+/* Insert/Delete/Mark line effects (expressive-code style) */
+.hypraw .ec-line.ins {
+  background: hsla(136, 60%, 50%, 0.1);
+}
+
+.hypraw .ec-line.ins .code {
+  border-inline-start-color: hsla(136, 60%, 50%, 0.4);
+}
+
+.hypraw .ec-line.del {
+  background: hsla(0, 60%, 50%, 0.1);
+}
+
+.hypraw .ec-line.del .code {
+  border-inline-start-color: hsla(0, 60%, 50%, 0.4);
+}
+
+.hypraw .ec-line.mark {
+  background: hsla(45, 100%, 50%, 0.15);
+}
+
+.hypraw .ec-line.mark .code {
+  border-inline-start-color: hsla(45, 100%, 50%, 0.5);
 }

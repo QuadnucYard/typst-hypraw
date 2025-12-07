@@ -1,7 +1,7 @@
 /// HTML output module for hypraw code highlighting.
 
 #import "utils.typ": *
-#import "styles.typ": resolve-line-numbers, retrieve-styles
+#import "styles.typ": resolve-highlights, resolve-line-numbers, retrieve-styles
 
 /// Maps CSS styles to generated class names for deduplication.
 #let _hl-class-db() = {
@@ -32,8 +32,9 @@
 }
 
 /// Renders a single line with optional line number gutter.
-#let render-line(line, line-number) = {
-  html.div(class: "ec-line", {
+#let render-line(line, line-number, line-classes: ()) = {
+  let classes = ("ec-line",) + line-classes
+  html.div(class: classes.join(" "), {
     // Add gutter with line number
     html.div(class: "gutter", {
       html.div(class: "ln", {
@@ -56,6 +57,10 @@
   let copy-button = style-state.at("copy-button", default: copy-button)
   let line-numbers = resolve-line-numbers(
     style-state.at("line-numbers", default: line-numbers),
+    it.lines.len(),
+  )
+  let highlights = resolve-highlights(
+    style-state.at("highlight", default: none),
     it.lines.len(),
   )
 
@@ -95,8 +100,15 @@
       html.elem("code", attrs: code-attrs, {
         if line-numbers != none {
           // Render with line structure for line numbers
-          for (line, ln) in it.lines.zip(line-numbers) {
-            render-line(line, ln)
+          for (i, (line, ln)) in it.lines.zip(line-numbers).enumerate() {
+            // Collect all classes for this line from highlights
+            let line-classes = ()
+            for (class, indices) in highlights {
+              if i in indices {
+                line-classes.push(class)
+              }
+            }
+            render-line(line, ln, line-classes: line-classes)
           }
         } else {
           // Original simple rendering without line structure

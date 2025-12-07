@@ -80,6 +80,40 @@ Custom labels per line (e.g., for diff indicators):
 == H2
 ```
 
+== Line Highlighting
+
+Highlight specific lines (0-based indices):
+
+#hypraw-set(highlight: (0, 2))
+```js
+console.log('Line 0 - highlighted');
+console.log('Line 1 - normal');
+console.log('Line 2 - highlighted');
+```
+
+Highlight ranges and individual lines:
+
+#hypraw-set(highlight: (0, (2, 4)))
+```js
+console.log('Line 0 - highlighted');
+console.log('Line 1 - normal');
+console.log('Line 2 - highlighted');
+console.log('Line 3 - highlighted');
+console.log('Line 4 - highlighted');
+```
+
+Use different highlight styles (ins/del/mark):
+
+#hypraw-set(highlight: (ins: (0, 1), del: (3,), mark: (5,)))
+```js
+console.log('Line 0 - inserted');
+console.log('Line 1 - inserted');
+console.log('Line 2 - normal');
+console.log('Line 3 - deleted');
+console.log('Line 4 - normal');
+console.log('Line 5 - marked');
+```
+
 == HTML Output Structure
 
 The line numbers feature generates this HTML structure:

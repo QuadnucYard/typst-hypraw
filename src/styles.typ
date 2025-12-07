@@ -9,7 +9,10 @@
 ///   - `int`: Start from this line number
 ///   - `array`: Custom labels per line (must match line count)
 /// - copy-button (auto, bool): Enable/disable copy button for next block
-#let hypraw-set(line-numbers: auto, copy-button: auto) = context {
+/// - highlight (auto, array, dictionary): Line highlighting configuration:
+///   - Array of indices/ranges: e.g., `(0, 2, (4, 6))` applies default "highlight" class
+///   - Dictionary mapping classes to indices: e.g., `(ins: (0, 2), del: (3,))` for ins/del/mark effects
+#let hypraw-set(line-numbers: auto, copy-button: auto, highlight: auto) = context {
   if line-numbers != auto {
     _hypraw-state.update(s => {
       s.line-numbers = line-numbers
@@ -22,11 +25,57 @@
       s
     })
   }
+  if highlight != auto {
+    _hypraw-state.update(s => {
+      s.highlight = highlight
+      s
+    })
+  }
 }
 
 #let retrieve-styles() = {
   let style-state = _hypraw-state.get()
   _hypraw-state.update((:)) // Reset upon used
+}
+
+#let _expand-indices(items) = {
+  let result = ()
+  for item in items {
+    if type(item) == int {
+      // Single line index (0-based)
+      result.push(item)
+    } else if type(item) == array and item.len() == 2 {
+      // Range (start, end) inclusive
+      let (start, end) = item
+      for i in range(start, end + 1) {
+        result.push(i)
+      }
+    } else {
+      panic("Invalid highlight item format: " + repr(item))
+    }
+  }
+  result.dedup()
+}
+
+#let resolve-highlights(highlight, line-count) = {
+  if highlight == none or highlight == false {
+    return (:)
+  }if type(highlight) == array {
+    // Simple array format - applies "highlight" class to all
+    return (highlight: _expand-indices(highlight))
+  } else if type(highlight) == dictionary {
+    // Dictionary format - maps class names to line indices
+    let result = (:)
+    for (class, items) in highlight {
+      if type(items) != array {
+        panic("Highlight items must be an array for class: " + class)
+      }
+      result.insert(class, _expand-indices(items))
+    }
+    return result
+  } else {
+    panic("highlight must be an array or dictionary")
+  }
 }
 
 #let resolve-line-numbers(line-numbers, line-count) = {
