@@ -1,9 +1,10 @@
 /// HTML output module for hypraw code highlighting.
 
 #import "utils.typ": *
+#import "styles.typ": resolve-line-numbers, retrieve-styles
 
 /// Maps CSS styles to generated class names for deduplication.
-#let hl-class-db() = {
+#let _hl-class-db() = {
   query(<hypraw:style>).dedup().enumerate().map(((i, m)) => (m.value, "c" + str(i))).to-dict()
 }
 
@@ -13,7 +14,7 @@
   if "attrs" in fields and "style" in fields.attrs {
     let style = fields.attrs.remove("style")
     [#metadata(style)<hypraw:style>]
-    html.span(it.body, class: hl-class-db().at(style, default: "`"))
+    html.span(it.body, class: _hl-class-db().at(style, default: "`"))
   } else {
     it
   }
@@ -46,16 +47,30 @@
 
 /// Renders block code as HTML `<div><pre><code>` structure with syntax highlighting.
 /// Supports optional line numbers displayed in a gutter.
-#let code-rule(it, copy-button: true, line-numbers: false, start-line-number: 1) = {
-  let line-count = it.lines.len()
-  // Calculate the width needed for line numbers (number of digits)
-  let end-line = start-line-number + line-count - 1
-  let ln-width = calc.max(str(start-line-number).len(), str(end-line).len())
+#let code-rule(
+  it,
+  line-numbers: false,
+  copy-button: true,
+) = {
+  let style-state = retrieve-styles()
+  let copy-button = style-state.at("copy-button", default: copy-button)
+  let line-numbers = resolve-line-numbers(
+    style-state.at("line-numbers", default: line-numbers),
+    it.lines.len(),
+  )
 
   let attrs = (class: "hypraw")
   // Add class to indicate line numbers are enabled
-  if line-numbers {
+  if line-numbers != none {
     attrs.class = "hypraw has-line-numbers"
+
+    // Calculate the width needed for line numbers (number of digits)
+    let ln-width = if line-numbers.len() > 0 {
+      // Use the width of the first and last number
+      calc.max(str(line-numbers.first()).len(), str(line-numbers.last()).len())
+    } else {
+      0
+    }
     // Set line number width as CSS variable when width > 2
     if ln-width > 2 {
       attrs.style = "--ln-width:" + str(ln-width) + "ch"
@@ -78,10 +93,10 @@
         code-attrs.data-lang = it.lang
       }
       html.elem("code", attrs: code-attrs, {
-        if line-numbers {
+        if line-numbers != none {
           // Render with line structure for line numbers
-          for (i, line) in it.lines.enumerate() {
-            render-line(line, i + start-line-number)
+          for (line, ln) in it.lines.zip(line-numbers) {
+            render-line(line, ln)
           }
         } else {
           // Original simple rendering without line structure
@@ -95,7 +110,7 @@
 /// Generates CSS styles for syntax highlighting. Creates `<style>` element with rules for HTML output.
 #let additional-styles() = {
   if is-html-target() {
-    let db = hl-class-db()
+    let db = _hl-class-db()
     if db.len() > 0 {
       db.pairs().map(((k, v)) => ".hypraw ." + v + "{" + k + "}\n").join()
     }

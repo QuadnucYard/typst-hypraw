@@ -52,6 +52,27 @@ console.log(`Sum of filtered numbers: ${result}`);
 export { fibonacci, numbers };
 ```
 
+== Line Number Customization
+
+#hypraw-set(line-numbers: none)
+```typ
+= H1
+== H2
+```
+
+
+#hypraw-set(line-numbers: 2)
+```typ
+= H1
+== H2
+```
+
+#hypraw-set(line-numbers: ("+", "-"))
+```typ
+= H1
+== H2
+```
+
 == HTML Output Structure
 
 The line numbers feature generates this HTML structure:
